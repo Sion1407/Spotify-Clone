@@ -7,7 +7,10 @@ This is simple spotify functionality where we can add songs, artists and it show
 5) Then cd in client and npm start it.
 6) and cd in server and nodemon start it.
 
-
+Some screenshots of the project
+![HomePage](https://user-images.githubusercontent.com/72179482/172038782-2ea4a0ab-b854-4579-9df0-3d0438495760.png)
+![AddSong](https://user-images.githubusercontent.com/72179482/172038788-9abab0c8-ce67-4bb0-b4b8-a16c9c62b173.png)
+![AddArtist](https://user-images.githubusercontent.com/72179482/172038790-149a7cf3-c143-4a7f-a846-27724cac89a3.png)
 
 #NOTE
 Some features are missing in future I might add it
