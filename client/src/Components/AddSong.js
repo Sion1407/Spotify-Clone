@@ -1,47 +1,37 @@
 import React, { useEffect, useState } from 'react'
-import Multiselect from 'multiselect-react-dropdown'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 export default function AddSong() {
 
     const [artists, setartists] = useState([]);
-    // const [artistsName, setartistsName] = useState([]);
+    const [artistsName, setartistsName] = useState([]);
     const [songName, setsongName] = useState("")
     const [Dor, setDor] = useState("")
-    const [image, setImage] = useState("")
+    // const [image, setImage] = useState("")
 
 
     function addSong() {
-        // setartists()
-        axios.post("http://localhost:8000/addSong", { songName: songName, dor: Dor, image: image, artists: artists })
+        axios.post("http://localhost:8000/addSong", { songName: songName, dor: Dor, artists: artistsName })
     }
+
     useEffect(()=>{
         const getArtistNames = async()=>{
-            const aNames = []
             axios.get("http://localhost:8000/getArtist").then((resp) => {
                 setartists(resp.data)
-                // artists.forEach(element => {
-                //     aNames.push(element.Names)
-                // });
             })
-            // setartistsName(aNames)
-            // console.log(artistsName);
         }
         getArtistNames();
     },[])
-        
-        
-    
-    
 
     return (
         <div className='container'>
             <h1>Adding a new song</h1>
-
+            <form encType='multipart/form-data'>
             <div className="form-group row">
                 <label htmlFor="inputName" className="col-sm-2 col-form-label">Song Name</label>
                 <div className="col-sm-10">
-                    <input type="text" className="form-control" name="songName" id="inputName" placeholder="Name of the Song" onChange={(event) => {
+                    <input type="text" className="form-control" name="songName" id="inputName" required placeholder="Name of the Song" onChange={(event) => {
                         setsongName(event.target.value);
                     }} />
                 </div>
@@ -49,46 +39,41 @@ export default function AddSong() {
             <div className="form-group row">
                 <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Date of release</label>
                 <div className="col-sm-10">
-                    <input type="date" className="form-control" name="dor" id="dateofbirth" placeholder="dd/mm/yyyy" onChange={(event) => {
+                    <input type="date" className="form-control" name="dor" id="dateofbirth" required placeholder="dd/mm/yyyy" onChange={(event) => {
                         setDor(event.target.value);
                     }} />
                 </div>
             </div>
-            <div className="form-group row">
+            {/* <div className="form-group row">
                 <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Artwork</label>
                 <div className="col-sm-10">
-                    <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" onChange={(event) => {
-                        setImage(event.target.files[0]);
+                    <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"  onChange={(event) => {
+                        setImage(event.target.files[0].name);
                     }} />
                 </div>
-            </div>
+            </div> */}
             <div className="form-group row">
                 <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Artist</label>
                 <div className="col-sm-10">
-                    
-                        {/* <Multiselect
-                        isObject={true}
-                        onRemove={(event) => {
-                            // console.log(event);
-                        }}
-                        onSelect={(event) => {
-                            // console.log(event);
-                        }}
-                        options={artists.Names}
-                        selectedValues={[]}
-                        showCheckbox
-                    /> */}
-                        
-                    
+                    <select multiple="multiple" data-style="bg-white rounded-pill px-4 py-3 shadow-sm " required onChange={(event) => {
+                        setartistsName(event.target.value)
+                    }}>
+                        {
+                            artists.map(artist=>(
+                                <option key={artist.id}>{artist.Names}</option>
+                            )
+                            )
+                        }
+                    </select>
                 </div>
             </div>
             <div className="form-group row">
                 <div className="col-sm-10">
-                    <button className="btn btn-primary" onClick={addSong} >Add Song</button>
+                    <Link to="/" className="btn btn-primary" onClick={addSong}>Add Song</Link>
                 </div>
-                {/* <button className="btn btn-primary" onClick={getArtistNames} >Show Artists</button> */}
+                <Link to="/artist" className="btn btn-primary">Add Artists</Link>
             </div>
-            
+            </form>
         </div>
     )
 }
