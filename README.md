@@ -17,5 +17,5 @@ Some features are missing in future I might add it
 Missing Features:
 1) Rating system
 2) Adding song image
-
+3) In future I might make it look beautiful but if you are expert feel free to do so....
 If you expert coder or know how to add these features feel free to code this features, HAPPY to accept any improvements and additional features :).
