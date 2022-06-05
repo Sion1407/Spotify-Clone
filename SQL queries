@@ -1,0 +1,19 @@
+CREATE TABLE `artists` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `Names` char(100) DEFAULT NULL,
+  `date_of_birth` varchar(255) DEFAULT NULL,
+  `bio` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `Names_UNIQUE` (`Names`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `songs` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `SongName` varchar(50) NOT NULL,
+  `date_of_release` varchar(255) DEFAULT NULL,
+  `artwork` varchar(255) DEFAULT NULL,
+  `artistName` char(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `SongName_UNIQUE` (`SongName`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
